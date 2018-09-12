@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('request', 'JoinController@store');
+Route::put('approve/{user_project_id}', 'JoinController@update');
+Route::put('reject/{user_project_id}', 'JoinController@reject');
+Route::get('requests/{user_id}', 'JoinController@requests');

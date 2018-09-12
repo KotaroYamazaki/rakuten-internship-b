@@ -15,9 +15,9 @@ class Projects extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('project_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->userCurrent();
             $table->string('name');
-            $table->string('admin_user_id');
+            $table->unsignedInteger('admin_user_id');
             $table->boolean('is_private');
             $table->string('introduction');
         });

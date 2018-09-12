@@ -15,7 +15,8 @@ class Users extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('user_id');
-            $table->timestamps();
+            $table->string('remember_token')->default('');
+            $table->timestamp('created_at')->userCurrent();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');

@@ -15,10 +15,12 @@ class UserProject extends Migration
     {
         Schema::create('user_project', function (Blueprint $table) {
             $table->increments('user_project_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->userCurrent();
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('project_id');
             $table->enum('state', ['approved', 'rejected', 'applied']);
+            $table->unique(['user_id', 'project_id']);
         });
     }
 
@@ -29,6 +31,6 @@ class UserProject extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user-project');
+        Schema::dropIfExists('user_project');
     }
 }

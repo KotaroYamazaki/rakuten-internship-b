@@ -15,7 +15,7 @@ class Tag extends Migration
     {
         Schema::create('tag', function (Blueprint $table) {
             $table->increments('tag_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->userCurrent();
             $table->string('tag_name');
         });
     }

@@ -1,4 +1,4 @@
-<!-- resources/views/layouts/app.blade.phpとして保存 -->
+<!-- resources/views/layouts/default.blade.phpとして保存 -->
 
 <!DOCTYPE html>
 <html lang="ja">

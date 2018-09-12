@@ -15,10 +15,11 @@ class TagUserProject extends Migration
     {
         Schema::create('tag_user_project', function (Blueprint $table) {
             $table->increments('tag_user_project_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->userCurrent();
             $table->unsignedInteger('tag_id');
-            $table->string('target_id');
+            $table->unsignedInteger('target_id');
             $table->enum('target_type', ['user_id', 'project_id']);
+            $table->unique(['tag_id', 'target_id']);
         });
     }
 
@@ -29,6 +30,6 @@ class TagUserProject extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tag-user-project');
+        Schema::dropIfExists('tag_user_project');
     }
 }
