@@ -7,27 +7,20 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(Request $req)
+    public function user_index(Request $req)
     {
+        $data['projects'] = DB::table('projects')
+                        ->leftjoin('user_project', 'projects.project_id', '=', 'user_project.project_id')
+                        ->where('user_project.user_id', $req->id)
+                        ->get();
+        $data['tag_name'] = DB::table('tag')
+                    ->leftjoin('tag_user_project', 'tag.tag_id', '=', 'tag_user_project.tag_id')
+                    ->where([['target_id', $req->id],['target_type','user_id']])
+                    ->value('tag_name');
         $user = DB::table('users')->where('user_id', $req->id)->first();      
         $data['user_id'] = $req->id;
         $data['user_name'] = $user->name;
+        $data['introduction'] = $user->introduction;
         return view('users.profile', $data);
     }
-    public function getProject(Request $req){
-        $project_name = DB::table('projects')
-                    ->leftjoin('user_project', 'projects.project_id', '=', 'user_project.project_id')
-                    ->where('user_id', $req->id)
-                    ->value('name');
-        return $project_name;
-    }
-    
-    public function getTag(Request $req){
-        $tag_name = DB::table('tag')
-                ->leftjoin('tag_user_project', 'tag.tag_id', '=', 'tag_user_project.tag_id')
-                ->where('target_id', $req->id)
-                ->value('tag_name');
-        return $tag_name;
-    }
-    
 }

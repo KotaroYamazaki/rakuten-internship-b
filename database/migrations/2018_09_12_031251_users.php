@@ -17,11 +17,12 @@ class Users extends Migration
             $table->increments('user_id');
             $table->string('remember_token')->default('');
             $table->timestamp('created_at')->userCurrent();
+            $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('github_url');
-            $table->string('introduction');
+            $table->string('github_url')->default('');
+            $table->string('introduction')->default('');
         });
     }
 

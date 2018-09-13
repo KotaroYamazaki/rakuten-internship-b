@@ -21,6 +21,7 @@ class JoinController extends Controller
                                 ->where('admin_user_id', $user_id)
                                 ->join('user_project', 'projects.project_id', '=', 'user_project.project_id')
                                 ->where('state', 'applied')
+                                ->join('users', 'user_project.user_id', 'users.user_id')
                                 ->get();
             return response($request_list, 200);
         } catch (Exception $e) {

@@ -15,7 +15,14 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
+//if all these routes need login
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/users', 'UserController@user_index');
+    Route::get('/projects', 'ProjectController@project_index');
+    Route::get('/search', 'SearchController@search_index');
+});
 
-Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/users', 'UserController@index');// // // 
+
+Route::view('/test', 'test');
