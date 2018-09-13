@@ -40,9 +40,9 @@ class JoinController extends Controller
                 'project_id' => $request->project_id,
                 'state' => $request->state
             ]);
-            return response('success!', 200);
+            return response('success!', 200)->header('Content-Type', 'text/plain');
         } catch (QueryException $ex) {
-            return response('なんども押さないで');
+            return response('なんども押さないで')->header('Content-Type', 'text/plain');
         } catch (Exception $e) {
             return response($e, 500);
         }

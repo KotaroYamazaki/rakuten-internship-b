@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/users', 'UserController@user_index');
     Route::get('/projects', 'ProjectController@project_index');
-    Route::get('/search', 'SearchController@search_index');
+    Route::get('/search', 'SearchController@searchUsersProjectsByTag');
 });
 
 Route::view('/test', 'test');

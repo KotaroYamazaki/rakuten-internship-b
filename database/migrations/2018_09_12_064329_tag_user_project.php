@@ -19,7 +19,7 @@ class TagUserProject extends Migration
             $table->unsignedInteger('tag_id');
             $table->unsignedInteger('target_id');
             $table->enum('target_type', ['user_id', 'project_id']);
-            $table->unique(['tag_id', 'target_id']);
+            $table->unique(['tag_id', 'target_id', 'target_type']);
         });
     }
 

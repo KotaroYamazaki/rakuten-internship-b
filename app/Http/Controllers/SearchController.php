@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function search_index()
-    {
-        return view('search');
-    }
     
     /**
      * select user data in storage.
@@ -17,37 +14,33 @@ class SearchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function users_data_requests(Request $request, $tag_id)
+    public function searchUsersProjectsByTag(Request $request)
     {
-        try {
-            $request_list = DB::table('users')
-                                ->join('tag_user_project', 'users.user_id', '=', 'tag_user_project.target_id')
-                                ->where('tag_id', '$tag_id')
-                                ->value('user_id', 'name')
-                                ->get();
-            return response($request_list, 200);
-        } catch (Exception $e) {
-            return response($e, 500);
+        $id = $request->id;
+        
+        // ちなみに、同時に一つのキーワードでしか検索出来ない
+        if (is_numeric($id)) {
+            $tagUserProjects = DB::table('tag_user_project')
+                ->where('tag_id', $id)
+                ->get();
+        } else {
+            $tagUserProjects = DB::table('tag_user_project')
+                ->join('tag', 'tag.tag_id', '=', 'tag_user_project.tag_id')
+                ->where('tag.tag_name', $id)
+                ->get();
         }
-    }
-    
-        /**
-     * select project data in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function projects_data_requests(Request $request, $tag_id)
-    {
-        try {
-            $project_data = DB::table('projects')
-                                ->join('tag_user_project', 'projects.project_id', '=', 'tag_user_project.target_id')
-                                ->where('tag_id', '$tag_id')
-                                ->value('project_id', 'name')
-                                ->get();
-            return view('search', $project_data);
-        } catch (Exception $e) {
-            return response($e, 500);
-        }
+        
+        $userIds = $tagUserProjects->where('target_type', 'user_id')->pluck('target_id');
+        $projectIds = $tagUserProjects->where('target_type', 'project_id')->pluck('target_id');
+        
+        $users = DB::table('users')
+            ->whereIn('user_id', $userIds)
+            ->get();
+            
+        $projects = DB::table('projects')
+            ->whereIn('project_id', $projectIds)
+            ->get();
+        
+        return view('search', compact('users', 'projects'));
     }
 }
