@@ -45,8 +45,10 @@
     </div> 
     <div class="ui main text container">
             {{-- コンテンツの表示 --}}
-            @yield('content')
+            @yield('content')        
     </div>
+      {{-- コンテンツの表示 --}}
+            @yield('object')
 
 
     <div class="ui inverted vertical footer segment">

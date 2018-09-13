@@ -18,7 +18,17 @@ class TagUserProjectTableSeeder extends Seeder
                 'tag_id' => 1,
                 'target_id' => 1,
                 'target_type' => 'user_id'
-            ]
+            ],
+            [
+                'tag_id' => 2,
+                'target_id' => 1,
+                'target_type' => 'user_id'
+            ],
+            [
+                'tag_id' => 3,
+                'target_id' => 1,
+                'target_type' => 'user_id'
+            ],
         ]);
     }
 }

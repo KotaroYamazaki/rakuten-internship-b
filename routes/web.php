@@ -23,6 +23,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/search', 'SearchController@search_index');
 });
 
-
-
 Route::view('/test', 'test');
