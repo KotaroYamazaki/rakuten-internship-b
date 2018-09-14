@@ -18,12 +18,12 @@ var apple = new Vue({
     methods: {
         setupFirebase: function(){
             var config = {
-                apiKey: "AIzaSyAy140OpzHCJRGYf6plHZbLl57UJCTnRC0",
-                authDomain: "rakuten-fd9f8.firebaseapp.com",
-                databaseURL: "https://rakuten-fd9f8.firebaseio.com",
-                projectId: "rakuten-fd9f8",
-                storageBucket: "rakuten-fd9f8.appspot.com",
-                messagingSenderId: "700654965875"
+                apiKey: "YOUR_API_KEY",
+                authDomain: "YOUR_DOMAIN",
+                databaseURL: "YOUR_BASE_URL",
+                projectId: "YOUR_PROJECT_ID",
+                storageBucket: "YOUR_STORAGE_BUCKET",
+                messagingSenderId: "YOUR_MESSAGING_ID"
             };
             firebase.initializeApp(config);
         },
