@@ -27,12 +27,6 @@ class ProjectsTableSeeder extends Seeder
                 'introduction' => 'Webで稼ぎたい方、一緒に世界を変えませんか？ぜひご参加ください！'
             ],
             [
-                'name' => "takahiro's project",
-                'admin_user_id' => '3',
-                'is_private' => false,
-                'introduction' => 'このプロジェクトではWebとお年寄りをつなげるサービスを開発します。おばあちゃん子エンジニアあつまれ！'
-            ],
-            [
                 'name' => "takato's project",
                 'admin_user_id' => '4',
                 'is_private' => false,

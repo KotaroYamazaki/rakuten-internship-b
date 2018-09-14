@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
 
@@ -31,7 +32,7 @@ class JoinController extends Controller
     public function store(Request $request)
     {
         if (!$request->has(['user_id', 'project_id', 'state'])) {
-            return response('wrong parameters!');
+            return Response::json(['message' => 'wrong parameter!', 'request' => $request], 400);
         }
         //
         try {
@@ -40,11 +41,13 @@ class JoinController extends Controller
                 'project_id' => $request->project_id,
                 'state' => $request->state
             ]);
-            return response('success!', 200)->header('Content-Type', 'text/plain');
+            //return response('success!', 200)->header('Content-Type', 'text/plain');
+            return Response::json(['message' => 'success!'], 200);
         } catch (QueryException $ex) {
-            return response('なんども押さないで')->header('Content-Type', 'text/plain');
+            //return response('なんども押さないで', 400)->header('Content-Type', 'text/plain');
+            return Response::json(['message' => 'なんども押さないで'], 400);
         } catch (Exception $e) {
-            return response($e, 500);
+            return Response::json(['message' => $e], 500);
         }
     }
 

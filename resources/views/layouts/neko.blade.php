@@ -35,7 +35,8 @@
           <img class="avatar image" src="{{ asset('storage/icons/app_icons/app_icon_face.png') }}">
         </a>
         <a href="/users?id={{ Auth::user()->user_id }}" class="header item">
-            <img class="ui avatar image" src="//placekitten.com/300/{{ 500 + Auth::user()->user_id }}" alt='image'>
+            <!--<img class="ui avatar image" src="//placekitten.com/300/{{ 500 + (10 * Auth::user()->user_id) }}" alt='image'>-->
+            <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/large/steve.jpg">
           　{{ Auth::user()->name }}
         </a>
         <a href="{{ url('search') }}" class="item">Search</a>
@@ -62,7 +63,11 @@
             <div v-for="(element, index) in items">
               <div class="ui segment">
                 <div class="ui grid">
-                  <div class="thirteen wide column">@{{ element.project_name}} from @{{ element.name }}</div>
+                  <a v-bind:href="'/users?id='+element.user_id" class="thirteen wide column">
+                    <!--<img class="ui image avatar" v-bind:src="'//placekitten.com/300/' + (500 + (10 * element.user_id))">-->
+                    <img class="ui image avatar" src="https://semantic-ui.com/images/avatar/large/steve.jpg">
+                    <div>@{{ element.project_name }} from @{{ element.name }}</div>
+                  </a>
                   <button class="ui icon button basic one wide column" v-on:click="approve(element.user_project_id, index)"><i class="check icon"></i></button>
                   <button class="ui icon button basic one wide column" v-on:click="reject(element.user_project_id, index)"><i class="close icon"></i></button>
                 </div>
@@ -74,12 +79,12 @@
       </section>
       </div>
       <div class="ui main text container">
-              {{-- コンテンツの表示 --}}
-              @yield('content')
+        {{-- コンテンツの表示 --}}
+        @yield('content')
       </div>
       <div class="ui container" style="margin:0em 0em 4em;">
         {{-- コンテンツの表示 --}}
-            @yield('object')
+        @yield('object')
       </div>
       
       <div class="ui inverted vertical footer segment">
@@ -88,6 +93,7 @@
               
                   <div class="ui inverted section divider"></div>
                   <div class="ui horizontal inverted small divided link list">
+                      <a class="item" href="/logout">Logout</a>
                       <a class="item" href="#">Site Map</a>
                       <a class="item" href="#">Contact Us</a>
                       <a class="item" href="#">Terms and Conditions</a>

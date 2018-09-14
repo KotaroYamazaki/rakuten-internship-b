@@ -21,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users', 'UserController@user_index');
     Route::get('/projects', 'ProjectController@project_index');
     Route::get('/search', 'SearchController@searchUsersProjectsByTag');
+    Route::get('/logout', 'UserController@logout');
 });
 
 Route::view('/test', 'test');

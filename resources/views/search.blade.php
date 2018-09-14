@@ -1,10 +1,11 @@
 @extends('layouts.neko')
 @section('object')
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@voerro/vue-tagsinput@1.8.0/dist/style.css">
+<section>
 <form method="get" action="/search">
   <div class="ui right labeled left icon input">
     <i class="tags icon"></i>
-    <input name="id">
+    <input name="id" value="{{ $searchQuery ?? '' }}">
     <button class="ui tag label">
       Add Tag
     </button>
@@ -12,8 +13,8 @@
 </form>
 
 <div class="ui top attached tabular menu">
-  <a class="active item" data-tab="project">Project</a>
-  <a class="item" data-tab="user">User</a>
+  <a class="active item" data-tab="project">Project ({{ $projects->count() }})</a>
+  <a class="item" data-tab="user">User ({{ $users->count() }})</a>
 </div>
 <div class="ui bottom attached active tab segment" data-tab="project">
     <div class="ui cards">
@@ -22,8 +23,8 @@
           <div class="content">
             <a class="header" href="/projects?id={{ $project->project_id }}">
               <img class="floated ui image avatar" src="//placekitten.com/300/{{ 600 + $project->project_id }}">
+              {{ $project -> name}}
             </a>
-            {{ $project -> name}}
           </div>
           <div class="extra content"> 
             <button class="fluid ui button">Join Project</button>
@@ -38,9 +39,9 @@
       <div class="ui card" href="">
         <div class="content">
           <a class="header" href="/users?id={{ $user->user_id }}">
-            <img class="floated ui image avatar" src="//placekitten.com/300/{{ 500 + $user->user_id }}">
+            <img class="floated ui image avatar" src="//placekitten.com/300/{{ 500 + 10 * $user->user_id }}">
+            {{ $user->name }}
           </a>
-          {{ $user->name }}
         </div>
         <div class="extra content">
           <button class="fluid ui button">Attend</button>
@@ -49,4 +50,5 @@
       @endforeach
     </div>
 </div>
+</section>
 @endsection

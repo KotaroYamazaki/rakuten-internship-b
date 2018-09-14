@@ -60,32 +60,7 @@ $(function () {
         });
       },
       
-      join: function ($project_id) {
-        fetch(url + '/store', {
-          method: 'POST',
-          body: JSON.stringify({
-              user_id: userId,
-              project_id: project_id,
-              state: 'applied'
-          })
-        })
-        .then(function (response) {
-            if (response.status == 200) {
-                return response.json();
-            }
-            // 200番以外のレスポンスはエラーを投げる
-            return response.json().then(function (json) {
-                throw new Error(json.message);
-            });
-        })
-        .then(function (json) {
-        // レスポンスが200番で返ってきたときの処理はここに記述する
-          console(json);
-        })
-        .catch(function (err) {
-        // レスポンスがエラーで返ってきたときの処理はここに記述する
-        });
-      }
+      
     }
   })
   

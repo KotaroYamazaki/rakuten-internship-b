@@ -51,7 +51,7 @@ class TagTableSeeder extends Seeder
                 'tag_name' => 'Kubernetes'    
             ],
             [
-                'tag_name' => 'Sabakan'    
+                'tag_name' => 'Redis'    
             ],
             [
                 'tag_name' => 'SpringFramework'    

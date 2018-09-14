@@ -17,7 +17,7 @@ class UserProjectTableSeeder extends Seeder
             [
                 'user_id' => 1,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 1,
@@ -30,7 +30,7 @@ class UserProjectTableSeeder extends Seeder
                 'state' => "applied"
             ],
             [
-                'user_id' => 3,
+                'user_id' => 6,
                 'project_id' => 5,
                 'state' => "applied"
             ],
@@ -42,12 +42,12 @@ class UserProjectTableSeeder extends Seeder
             [
                 'user_id' => 5,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 6,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 7,
@@ -72,12 +72,12 @@ class UserProjectTableSeeder extends Seeder
             [
                 'user_id' => 11,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 12,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 13,
@@ -92,22 +92,22 @@ class UserProjectTableSeeder extends Seeder
             [
                 'user_id' => 15,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 16,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 17,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 18,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 19,
@@ -152,22 +152,22 @@ class UserProjectTableSeeder extends Seeder
             [
                 'user_id' => 27,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 28,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 29,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 30,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 31,
@@ -177,7 +177,7 @@ class UserProjectTableSeeder extends Seeder
             [
                 'user_id' => 32,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 33,
@@ -187,17 +187,17 @@ class UserProjectTableSeeder extends Seeder
             [
                 'user_id' => 34,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 35,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 36,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 37,
@@ -217,17 +217,17 @@ class UserProjectTableSeeder extends Seeder
             [
                 'user_id' => 40,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 41,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 42,
                 'project_id' => 2,
-                'state' => "applied"
+                'state' => "approved"
             ],
             [
                 'user_id' => 43,
@@ -256,52 +256,47 @@ class UserProjectTableSeeder extends Seeder
             ],
             [
                 'user_id' => 2,
-                'project_id' => 1,
-                'state' => "applied"
-            ],
-            [
-                'user_id' => 3,
-                'project_id' => 3,
-                'state' => "applied"
-            ],
-            [
-                'user_id' => 2,
-                'project_id' => 4,
-                'state' => "applied"
-            ],
-            [
-                'user_id' => 2,
-                'project_id' => 6,
-                'state' => "applied"
-            ],
-            [
-                'user_id' => 2,
-                'project_id' => 7,
-                'state' => "applied"
-            ],
-            [
-                'user_id' => 2,
-                'project_id' => 8,
-                'state' => "applied"
-            ],
-            [
-                'user_id' => 2,
-                'project_id' => 9,
-                'state' => "applied"
-            ],
-            [
-                'user_id' => 2,
                 'project_id' => 10,
                 'state' => "applied"
             ],
             [
                 'user_id' => 2,
-                'project_id' => 11,
+                'project_id' => 14,
                 'state' => "applied"
             ],
             [
                 'user_id' => 2,
-                'project_id' => 12,
+                'project_id' => 34,
+                'state' => "applied"
+            ],
+            [
+                'user_id' => 2,
+                'project_id' => 18,
+                'state' => "applied"
+            ],
+            [
+                'user_id' => 2,
+                'project_id' => 16,
+                'state' => "applied"
+            ],
+            [
+                'user_id' => 2,
+                'project_id' => 17,
+                'state' => "applied"
+            ],
+            [
+                'user_id' => 2,
+                'project_id' => 23,
+                'state' => "applied"
+            ],
+            [
+                'user_id' => 2,
+                'project_id' => 29,
+                'state' => "applied"
+            ],
+            [
+                'user_id' => 2,
+                'project_id' => 20,
                 'state' => "applied"
             ],
             [

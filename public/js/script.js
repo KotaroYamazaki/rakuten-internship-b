@@ -1,14 +1,6 @@
 var apple = new Vue({
     el: '#apple',
     created: function(){
-        let inputedUserName = "user";
-        this.userName = inputedUserName
-
-        if(inputedUserName.length == 0){
-            let dummyNameList = ['Riu','Pedro','Yosyy', 'Teppy'];
-            this.userName =  dummyNameList[Math.floor(Math.random() * dummyNameList.length)];
-        }
-
         this.setupFirebase()
         this.setupChat()
         this.loadMessage()
@@ -16,7 +8,6 @@ var apple = new Vue({
 
     data: {
         message: "",
-        userName: "",
         userId: Math.random().toString(36).slice(-8),
         messages: [],
         developerName: "",
@@ -38,7 +29,7 @@ var apple = new Vue({
         },
 
         setupChat: function(){
-            let ref = firebase.database().ref('message')
+            let ref = firebase.database().ref('messages')
             let hash = location.hash
 
             if(hash != null && hash.length > 0){
@@ -76,7 +67,6 @@ var apple = new Vue({
         messageRef.set({
             chat: chat
             , message: this.message
-            , userName: this.userName
             , userId: this.userId
             , createdAt: createdAt
             , createdAtReverse: -createdAt
@@ -132,8 +122,6 @@ var apple = new Vue({
                     return
                 }
             }
-
-
             this.messages.push(newMessage)
             this.scrollToBottom()
         })
@@ -155,27 +143,6 @@ var apple = new Vue({
     // My message?
     isMyMessage: function(message){
         return this.userId == message.userId
-    },
-
-    displayTime: function(message) {
-        let timestamp = message.createdAt * 1000
-        var date = new Date(timestamp)
-        var diff = new Date().getTime() - date.getTime()
-        var d = new Date(diff);
-    
-        if (d.getUTCDate() - 1){
-            return d.getUTCDate() - 1 + ' days ago'
-        }
-        else if(d.getUTCHours()){
-            return d.getUTCHours() + ' hours ago'
-        }
-        else if(d.getUTCMinutes()){
-            return d.getUTCMinutes() + ' minutes ago'
-        }
-        else if(d.getUTCSeconds()){
-            return d.getUTCSeconds() + ' seconds ago'
-        }
-
     },
     timestamp: function(){
         let date = new Date()

@@ -18,17 +18,34 @@ class SearchController extends Controller
     {
         $id = $request->id;
         
-        // ちなみに、同時に一つのキーワードでしか検索出来ない
-        if (is_numeric($id)) {
-            $tagUserProjects = DB::table('tag_user_project')
-                ->where('tag_id', $id)
-                ->get();
-        } else {
-            $tagUserProjects = DB::table('tag_user_project')
-                ->join('tag', 'tag.tag_id', '=', 'tag_user_project.tag_id')
-                ->where('tag.tag_name', $id)
-                ->get();
+        // ちなみに、これで一つのタグでしか同時に検索出来ない
+        // if (is_numeric($id)) {
+        //     $tagUserProjects = DB::table('tag_user_project')
+        //         ->where('tag_id', $id)
+        //         ->get();
+        // } else {
+        //     $tagUserProjects = DB::table('tag_user_project')
+        //         ->join('tag', 'tag.tag_id', '=', 'tag_user_project.tag_id')
+        //         ->where('tag.tag_name', $id)
+        //         ->get();
+        // }
+        
+        
+        // 複数タグを同時に検索
+        $tagIds = [];
+        $tagNames = [];
+        foreach (explode(' ', $request->id) as $id) {
+            if (is_numeric($id)) {
+                $tagIds[] = $id;
+            } else {
+                $tagNames[] = $id;
+            }
         }
+        $tagUserProjects = DB::table('tag_user_project')
+            ->join('tag', 'tag.tag_id', '=', 'tag_user_project.tag_id')
+            ->whereIn('tag.tag_name', $tagNames)
+            ->whereIn('tag.tag_id', $tagIds, 'or')
+            ->get();
         
         $userIds = $tagUserProjects->where('target_type', 'user_id')->pluck('target_id');
         $projectIds = $tagUserProjects->where('target_type', 'project_id')->pluck('target_id');
@@ -41,6 +58,10 @@ class SearchController extends Controller
             ->whereIn('project_id', $projectIds)
             ->get();
         
-        return view('search', compact('users', 'projects'));
+        return view('search', [
+            'users' => $users,
+            'projects' => $projects,
+            'searchQuery' => $request->id,
+        ]);
     }
 }
